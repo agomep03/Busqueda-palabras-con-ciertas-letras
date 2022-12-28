@@ -6,24 +6,24 @@ public class Main {
 		
 		Dictionary diccionario = new Dictionary();
 		
-		int queHacer=0;
+		int queHacer=1;
 		Scanner input = new Scanner(System.in);
-		if(args.length==0) {
-			//Si no recibe argumentos pregunta que quiere el usuario hacer
-			queHacer=preguntarQueHacer(input);
-		}else {
-			try {
-				//Recoge la accion del argumento
-				queHacer = Integer.parseInt(args[0]);
-				if(queHacer<1 || queHacer>3) {
-					//Si la opcion no es valida lanza excepciom
-					throw new Exception("Opcion no valida");
-				}
-			}catch(Exception e) {
-				//Si el argumento no es valido pregunta al usuario
-				queHacer=preguntarQueHacer(input);
-			}
-		}
+//		if(args.length==0) {
+//			//Si no recibe argumentos pregunta que quiere el usuario hacer
+//			queHacer=preguntarQueHacer(input);
+//		}else {
+//			try {
+//				//Recoge la accion del argumento
+//				queHacer = Integer.parseInt(args[0]);
+//				if(queHacer<1 || queHacer>3) {
+//					//Si la opcion no es valida lanza excepciom
+//					throw new Exception("Opcion no valida");
+//				}
+//			}catch(Exception e) {
+//				//Si el argumento no es valido pregunta al usuario
+//				queHacer=preguntarQueHacer(input);
+//			}
+//		}
 		
 		String letras;
 		switch (queHacer) {
@@ -52,15 +52,15 @@ public class Main {
 
 
 	private static String obtenerLetras(String[] args, Scanner input) {
-		String letras;
-		if(args.length<2) {
-			//Si no recibe argumentos pregunta que letras emplea
-			System.out.println("Inserta las letras que quieras comprobar sin emplear espacios y presiona Enter.");
-			letras = input.nextLine() + input.nextLine();
-		}else {
-			//Si recibe argumentos recoge las letras de este
-			letras = args[1];
-		}
+		String letras="padre";
+//		if(args.length<2) {
+//			//Si no recibe argumentos pregunta que letras emplea
+//			System.out.println("Inserta las letras que quieras comprobar sin emplear espacios y presiona Enter.");
+//			letras = input.nextLine() + input.nextLine();
+//		}else {
+//			//Si recibe argumentos recoge las letras de este
+//			letras = args[1];
+//		}
 		return letras;
 	}
 
