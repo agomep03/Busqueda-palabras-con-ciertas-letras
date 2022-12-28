@@ -38,6 +38,8 @@ public class Code2 {
 				}	
 				used[i] = false;
 			}
+			newWord = new StringBuffer();
+			newWord.append(actualWord + letters[i]);
 		}
 		
 		return words.toString();
