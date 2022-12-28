@@ -15,11 +15,11 @@ public class Code{
 		String ActualWord;
 		int Number = letters.length();
 		
-		for (int i = 0; i <= letters.length(); i++) {
+		for (int i = 0; i < letters.length(); i++) {
 			Used[i] = false;
 		}
 		
-		for (int i = 0; i <= letters.length(); i++) {
+		for (int i = 0; i < letters.length(); i++) {
 			Words += DictionarySearchRec(Used, "", i, letters );
 		}
 		
