@@ -33,11 +33,11 @@ public class Code{
 				String NewWord = ActualWord + letters.charAt(i);
 				if (Number-1 == 0 ) {
 					if (dictMal.contains(NewWord)) {
-						Words += NewWord;
+						Words += NewWord+ "\n";
 					}
 				}
 				Used[i] = true;
-				Words += DictionarySearchRec(Used, NewWord + "\n", Number-1, letters );
+				Words += DictionarySearchRec(Used, NewWord, Number-1, letters );
 				Used[i] = false;
 			}
 		}
