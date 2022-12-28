@@ -2,6 +2,13 @@ package src;
 
 public class Code2 {
 	
+	private Dictionary dict;
+	
+	public Code2(Dictionary dc) {
+		this.dict = dc;
+	}
+	
+	
 	public String DictionarySearch(char[] letters) {
 		boolean[] used = new boolean[letters.length];
 		
@@ -22,9 +29,9 @@ public class Code2 {
 				newWord.append(actualWord + letters[i]);				
 				used[i] = true;
 				
-//				if(Dictionary.contains(newWord)) {
-//					words.append(newWord);
-//				}
+				if(this.dict.contains(newWord.toString())) {
+					words.append(newWord);
+				}
 				
 				if(words.length() < (letters.length + 1)) {
 					words.append(DictionarySearchRec(letters, used , newWord.toString()));
