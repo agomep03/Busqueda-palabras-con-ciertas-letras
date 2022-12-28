@@ -25,14 +25,15 @@ public class Code2 {
 		StringBuffer newWord = new StringBuffer();
 		
 		for(int i = 0; i < letters.length; i++) {
-			if(used[i] == false) {				
-				newWord.append(actualWord + letters[i]);				
+			if(used[i] == false) {	
+				newWord = new StringBuffer();
+				newWord.append(actualWord + letters[i]);
 				used[i] = true;
 				if(this.dict.contains(newWord.toString())) {
 					words.append(newWord+"\n");
 				}
 				
-				if(words.length() < (letters.length + 1)) {
+				if(newWord.length() < (letters.length + 1)) {
 					words.append(DictionarySearchRec(letters, used , newWord.toString()));
 				}	
 				used[i] = false;
