@@ -28,7 +28,7 @@ public class Code{
 	
 	public String DictionarySearchRec(boolean[] Used, String ActualWord, int Number, String letters) {
 		String Words = "";
-		for (int i = 0; i<= letters.length(); i++) {
+		for (int i = 0; i< letters.length(); i++) {
 			if (Used[i] == false) {
 				String NewWord = ActualWord + letters.charAt(i);
 				if (Number-1 == 0 ) {
@@ -37,7 +37,7 @@ public class Code{
 					}
 				}
 				Used[i] = true;
-				Words += DictionarySearchRec(Used, NewWord, Number-1, letters );
+				Words += DictionarySearchRec(Used, NewWord + "\n", Number-1, letters );
 				Used[i] = false;
 			}
 		}

@@ -29,7 +29,6 @@ public class Main {
 		switch (queHacer) {
 		case 1:
 			letras = obtenerLetras(args, input);
-			System.out.println("Aqui iria el codigo 1");
 			Code codigo = new Code(diccionario);
 			String sol = codigo.DictionarySearch(letras);
 			System.out.println(sol);
