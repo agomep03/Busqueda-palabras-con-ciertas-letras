@@ -2,7 +2,7 @@ package src;
 import java.util.Scanner;
 
 public class Main {
-	public static void Main(String args[]) {
+	public static void main(String args[]) {
 		
 		Diccionario diccionario = new Diccionario();
 		
