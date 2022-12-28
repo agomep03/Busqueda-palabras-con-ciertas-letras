@@ -30,12 +30,16 @@ public class Main {
 		case 1:
 			letras = obtenerLetras(args, input);
 			System.out.println("Aqui iria el codigo 1");
-			//Codigo1(letras, diccionario)
+			Code codigo = new Code(diccionario);
+			String sol = codigo.DictionarySearch(letras);
+			System.out.println(sol);
 			break;
 		case 2:
 			letras = obtenerLetras(args, input);
-			System.out.println("Aqui iria el codigo 2");
-			//Codigo2(letras, diccionario)
+			String[] letrasDivididas = letras.split("");
+			Code2 codigo2 = new Code2(diccionario);
+			String sol2 = codigo2.DictionarySearch(letrasDivididas);
+			System.out.println(sol2);
 			break;
 		case 3:
 			System.out.println("Aqui llamaría a las pruebas...");
