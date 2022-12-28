@@ -3,14 +3,14 @@ package src;
 import java.util.*;
 
 public class Code{
+	private Dictionary dictMal;
+	
+	public Code(Dictionary dc) {
+		this.dictMal = dc;
+	}
+	
 	public String DictionarySearch(String letters){
 		String Words = "";
-		private Dictionary dictMal;
-		
-		public Code(Dictionary dc) {
-			this.dictMal = dc;
-		}
-		
 		boolean[] Used = new boolean[letters.length()];
 		String ActualWord;
 		int Number = letters.length();
@@ -27,18 +27,19 @@ public class Code{
 	}
 	
 	public String DictionarySearchRec(boolean[] Used, String ActualWord, int Number, String letters) {
+		String Words = "";
 		for (int i = 0; i<= letters.length(); i++) {
 			if (Used[i] == false) {
-				String NewWord = ActualWord + letters[i];
+				String NewWord = ActualWord + letters.charAt(i);
 				if (Number-1 == 0 ) {
 					if (Dictionary.contains(NewWord)) {
-						Words += NewWord;
+						DictionarySearch.Words += NewWord;
 					}
 				}
+				Used[i] = true;
+				return DictionarySearchRec(letters, Used, NewWord, Number-1);
+				Used[i] = false;
 			}
-			Used[i] = true;
-			DictionarySearchRec(letters, Used, NewWord, Number-1);
-			Used[i] = false;
 		}
 	}
 }
