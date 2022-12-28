@@ -3,6 +3,9 @@ import java.util.Scanner;
 
 public class Main {
 	public static void Main(String args[]) {
+		
+		Diccionario diccionario = new Diccionario();
+		
 		int queHacer=0;
 		Scanner input = new Scanner(System.in);
 		if(args.length==0) {
@@ -27,12 +30,12 @@ public class Main {
 		case 1:
 			letras = obtenerLetras(args, input);
 			System.out.println("Aqui iria el codigo 1");
-			//Codigo1(letras)
+			//Codigo1(letras, diccionario)
 			break;
 		case 2:
 			letras = obtenerLetras(args, input);
 			System.out.println("Aqui iria el codigo 2");
-			//Codigo2(letras)
+			//Codigo2(letras, diccionario)
 			break;
 		case 3:
 			System.out.println("Aqui llamaría a las pruebas...");
