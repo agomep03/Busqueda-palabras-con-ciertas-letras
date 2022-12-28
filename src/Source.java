@@ -4,7 +4,7 @@ public class Source {
 	private String content;
 	private int pointer;
 
-	public Source(String fileName) throws WordleException {
+	public Source(String fileName) throws Exception {
 		FileReader reader = new FileReader(fileName);
 		this.content = reader.read();
 	}
