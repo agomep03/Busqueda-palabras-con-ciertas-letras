@@ -20,10 +20,10 @@ public class Code{
 		}
 		
 		for (int i = 0; i <= letters.length(); i++) {
-			DictionarySearchRec(Used, "", i, letters);
+			Words += DictionarySearchRec(Used, "", i, letters );
 		}
 		
-		return "";
+		return Words;
 	}
 	
 	public String DictionarySearchRec(boolean[] Used, String ActualWord, int Number, String letters) {
@@ -32,14 +32,15 @@ public class Code{
 			if (Used[i] == false) {
 				String NewWord = ActualWord + letters.charAt(i);
 				if (Number-1 == 0 ) {
-					if (Dictionary.contains(NewWord)) {
-						DictionarySearch.Words += NewWord;
+					if (dictMal.contains(NewWord)) {
+						Words += NewWord;
 					}
 				}
 				Used[i] = true;
-				return DictionarySearchRec(letters, Used, NewWord, Number-1);
+				Words += DictionarySearchRec(Used, NewWord, Number-1, letters );
 				Used[i] = false;
 			}
 		}
+		return Words;
 	}
 }
