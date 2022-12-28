@@ -25,12 +25,11 @@ public class Code2 {
 		StringBuffer newWord = new StringBuffer();
 		
 		for(int i = 0; i < letters.length; i++) {
-			if(used[i] = false) {				
+			if(used[i] == false) {				
 				newWord.append(actualWord + letters[i]);				
 				used[i] = true;
-				
 				if(this.dict.contains(newWord.toString())) {
-					words.append(newWord);
+					words.append(newWord+"\n");
 				}
 				
 				if(words.length() < (letters.length + 1)) {
