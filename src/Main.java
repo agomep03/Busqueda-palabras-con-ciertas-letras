@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String args[]) {
 		
-		Diccionario diccionario = new Diccionario();
+		Dictionary diccionario = new Dictionary();
 		
 		int queHacer=0;
 		Scanner input = new Scanner(System.in);

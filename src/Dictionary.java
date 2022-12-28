@@ -2,10 +2,10 @@ package src;
 
 import java.util.ArrayList;
 
-public class Diccionario {
+public class Dictionary {
 	ArrayList<String> palabras;
 	
-	public Diccionario() {
+	public Dictionary() {
 		palabras = new ArrayList<String>();
 		
 		try {
