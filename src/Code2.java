@@ -9,7 +9,7 @@ public class Code2 {
 	}
 	
 	
-	public String DictionarySearch(char[] letters) {
+	public String DictionarySearch(String[] letters) {
 		boolean[] used = new boolean[letters.length];
 		
 		for(int i = 0; i < used.length; i++) {
@@ -19,7 +19,7 @@ public class Code2 {
 		return DictionarySearchRec(letters, used, "");
 	}
 	
-	public String DictionarySearchRec(char[] letters, boolean[] used, String actualWord) {
+	public String DictionarySearchRec(String[] letters, boolean[] used, String actualWord) {
 		StringBuffer words = new StringBuffer();
 		
 		StringBuffer newWord = new StringBuffer();
