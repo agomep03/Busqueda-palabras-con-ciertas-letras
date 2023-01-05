@@ -52,7 +52,7 @@ public class Main {
 
 
 	private static String obtenerLetras(String[] args, Scanner input) {
-		String letras="padre";
+		String letras="";
 		if(args.length<2) {
 			//Si no recibe argumentos pregunta que letras emplea
 			System.out.println("Inserta las letras que quieras comprobar sin emplear espacios y presiona Enter.");
