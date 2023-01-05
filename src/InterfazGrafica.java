@@ -1,10 +1,7 @@
 package src;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +10,7 @@ import javax.swing.*;
 
 public class InterfazGrafica{
 	private int seleccionCodigo;
+	private int numPos;
 	private Dictionary diccionario;
 	
 	private JFrame ventana;
@@ -23,22 +21,34 @@ public class InterfazGrafica{
 	private JPanel codes;
 	private JTextField letras;
 	private JButton ejecutar;
-	private JScrollPane scrolleable;
-	private JTextArea etiqueta;
 	private JPanel panelEjecutar;
 	private JPanel opciones;
 	private JPanel modos;
 	
+	private JPanel panelEtiqueta;
+	private JPanel soluciones;
+	private JPanel flechas;
+	private JButton subir;
+	private JButton bajar;
+	private JLabel etiquetas[];
+	private int numEtiquetas;
+	
+	
+	String[] listaSoluciones;
+	
 	public InterfazGrafica() {
 		this.seleccionCodigo = 0;
+		this.numPos = 0;
 		this.diccionario = new Dictionary();
+		this.numEtiquetas = 10;
 	}
 	
 	public void crearVentana() {
 		ventana= new JFrame("Busqueda de palabras");
-		ventana.setLayout(new BorderLayout());
+		ventana.setLayout(new BorderLayout(10,10));
 		principal = new JPanel(new GridLayout(2, 1,10,10));
 		ventana.add(principal, BorderLayout.NORTH);
+		principal.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 		
 		opciones = new JPanel();
 		opciones.setLayout(new BorderLayout());
@@ -88,7 +98,7 @@ public class InterfazGrafica{
 		});
 		
 		panelEjecutar = new JPanel();
-		panelEjecutar.setLayout(new BorderLayout());
+		panelEjecutar.setLayout(new BorderLayout(10,10));
 		
 		letras = new JTextField();
 		panelEjecutar.add(letras, BorderLayout.CENTER);
@@ -99,43 +109,92 @@ public class InterfazGrafica{
 		ejecutar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				switch (seleccionCodigo) {
-				case 1:
-					Code codigo = new Code(diccionario);
-					String sol = codigo.DictionarySearch(letras.getText());
-					imprimirRes(sol);
-					break;
-				case 2:
-					String[] letrasDivididas = letras.getText().split("");
-					Code2 codigo2 = new Code2(diccionario);
-					String sol2 = codigo2.DictionarySearch(letrasDivididas);
-					imprimirRes(sol2);
-					break;
-				case 3:
-					imprimirRes("Aqui llamaría a las pruebas...\n"+"Pero aun no las he puesto :b");
-				default:
-					imprimirRes("Da click a un botón para seleccionar su modo.");
-					break;
+					case 1:
+						Code codigo = new Code(diccionario);
+						String sol = codigo.DictionarySearch(letras.getText());
+						imprimirRes(sol);
+						break;
+					case 2:
+						String[] letrasDivididas = letras.getText().split("");
+						Code2 codigo2 = new Code2(diccionario);
+						String sol2 = codigo2.DictionarySearch(letrasDivididas);
+						imprimirRes(sol2);
+						break;
+					case 3:
+						imprimirRes("Aqui llamaría a las pruebas");
+						break;
+					default:
+						imprimirRes("Da click a un botón para seleccionar su modo.");
+						break;
 				}
 			}
 		});
-		scrolleable = new JScrollPane();
-		scrolleable.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		etiqueta = new JTextArea();
-		scrolleable.add(etiqueta);
-		etiqueta.setSize(700, 400);
-		scrolleable.setBackground(Color.red);
-		ventana.add(scrolleable, BorderLayout.CENTER);
-		etiqueta.setText("\n\n\n\n");
-		ventana.setSize(700, 450);
+		
+		soluciones = new JPanel();
+		soluciones.setLayout(new BorderLayout());
+		ventana.add(soluciones, BorderLayout.CENTER);
+		
+		flechas = new JPanel();
+		flechas.setLayout(new GridLayout(2,1));
+		subir = new JButton("↑");
+		subir.setFont(new Font("TimesRoman", Font.PLAIN, 40));
+		subir.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(numPos>0) {
+					numPos--;
+					colocarEtiquetas();
+				}
+			}
+		});
+		flechas.add(subir);
+		bajar = new JButton("↓");
+		bajar.setFont(new Font("TimesRoman", Font.PLAIN, 40));
+		bajar.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(numPos<listaSoluciones.length-1) {
+					numPos++;
+					colocarEtiquetas();
+				}
+			}
+		});
+		flechas.add(bajar);
+		soluciones.add(flechas, BorderLayout.EAST);
+		
+		panelEtiqueta = new JPanel();
+		panelEtiqueta.setLayout(new GridLayout(numEtiquetas, 1));
+		etiquetas = new JLabel[numEtiquetas];
+		for(int i=0; i<numEtiquetas; i++) {
+			etiquetas[i] = new JLabel(" ");
+			panelEtiqueta.add(etiquetas[i]);
+		}
+		soluciones.add(panelEtiqueta);
+		soluciones.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+		
+		
+		ventana.setSize(450, 450);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);
 	}
 	
+	
 	public void imprimirRes(String sol) {
-		etiqueta.setText(sol);
+		listaSoluciones = sol.split("\n");
+		numPos = 0;
+		colocarEtiquetas();
+	}
+	
+	public void colocarEtiquetas() {
+		for(int i=0; i<numEtiquetas; i++) {
+			if(numPos+i<listaSoluciones.length) {
+				etiquetas[i].setText(listaSoluciones[numPos+i]);
+			}else {
+				etiquetas[i].setText(" ");
+			}
+		}
 	}
 	
 	
