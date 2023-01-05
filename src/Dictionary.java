@@ -18,10 +18,12 @@ public class Dictionary {
 			}
 		} catch (Exception e) {
 			System.out.println("Error en el constructor de diccionario: "+e.getMessage());
-		}	
+		}
+		
 	}
 	
 	public boolean contains(String palabra) {
 		return palabras.contains(palabra);
 	}
+	
 }
