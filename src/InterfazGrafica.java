@@ -19,11 +19,15 @@ public class InterfazGrafica{
 	private JPanel principal;
 	private JButton code1;
 	private JButton code2;
+	private JButton prueba;
 	private JPanel codes;
 	private JTextField letras;
 	private JButton ejecutar;
 	private JScrollPane scrolleable;
 	private JTextArea etiqueta;
+	private JPanel panelEjecutar;
+	private JPanel opciones;
+	private JPanel modos;
 	
 	public InterfazGrafica() {
 		this.seleccionCodigo = 1;
@@ -33,41 +37,66 @@ public class InterfazGrafica{
 	public void crearVentana() {
 		ventana= new JFrame("Busqueda de palabras");
 		ventana.setLayout(new BorderLayout());
-		principal = new JPanel(new GridLayout(4, 1));
+		principal = new JPanel(new GridLayout(2, 1,10,10));
 		ventana.add(principal, BorderLayout.NORTH);
+		
+		opciones = new JPanel();
+		opciones.setLayout(new BorderLayout());
+		
+		modos = new JPanel();
+		modos.add(new JLabel("Selecciona un modo:"));
+		opciones.add(modos, BorderLayout.WEST);
+		
 		
 		code1 = new JButton("Emplear el código menos óptimo");
 		code2 = new JButton("Emplear el código más óptimo");
+		prueba = new JButton("Ejecutar una prueba");
 		codes = new JPanel();
-		codes.setLayout(new GridLayout(1,2));
+		codes.setLayout(new GridLayout(3,1));
 		codes.add(code1);
 		codes.add(code2);
-		principal.add(codes);
+		codes.add(prueba);
+		opciones.add(codes, BorderLayout.CENTER);
+		
+		principal.add(opciones);
 		code1.setEnabled(false);
 		code1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				seleccionCodigo=2;
 				code1.setEnabled(false);
 				code2.setEnabled(true);
+				prueba.setEnabled(true);
 			}
 		});
 		code2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				seleccionCodigo=1;
-				code2.setEnabled(false);
 				code1.setEnabled(true);
+				code2.setEnabled(false);
+				prueba.setEnabled(true);
+			}
+		});
+		prueba.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				seleccionCodigo=3;
+				code1.setEnabled(true);
+				code2.setEnabled(true);
+				prueba.setEnabled(false);
 			}
 		});
 		
-		letras = new JTextField();
-		principal.add(letras);
+		panelEjecutar = new JPanel();
+		panelEjecutar.setLayout(new BorderLayout());
 		
-		ejecutar = new JButton();
-		principal.add(ejecutar);
+		letras = new JTextField();
+		panelEjecutar.add(letras, BorderLayout.CENTER);
+		
+		ejecutar = new JButton("Ejecutar");
+		panelEjecutar.add(ejecutar, BorderLayout.EAST);
+		principal.add(panelEjecutar);
 		ejecutar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -85,7 +114,7 @@ public class InterfazGrafica{
 					imprimirRes(sol2);
 					break;
 				case 3:
-					imprimirRes("Aqui llamaría a las pruebas...\n"+"Si tuvieramos pruebas");
+					imprimirRes("Aqui llamaría a las pruebas...\n"+"Pero aun no las he puesto :b");
 				default:
 					break;
 				}
@@ -95,12 +124,13 @@ public class InterfazGrafica{
 		scrolleable.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		etiqueta = new JTextArea();
 		scrolleable.add(etiqueta);
-		etiqueta.setSize(600, 400);
+		etiqueta.setSize(700, 400);
 		scrolleable.setBackground(Color.red);
 		ventana.add(scrolleable, BorderLayout.CENTER);
 		etiqueta.setText("\n\n\n\n");
-		ventana.setSize(600, 450);
+		ventana.setSize(700, 450);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);
 	}
 	
