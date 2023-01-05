@@ -15,7 +15,6 @@ public class Dictionary {
 				StringBuffer palabra = new StringBuffer(pal);
 				palabra.replace(palabra.length() - 1, palabra.length(), "");
 				palabras.add(palabra.toString());
-			
 			}
 		} catch (Exception e) {
 			System.out.println("Error en el constructor de diccionario: "+e.getMessage());
