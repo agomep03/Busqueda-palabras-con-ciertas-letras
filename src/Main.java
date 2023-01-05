@@ -11,19 +11,20 @@ public class Main {
 		if(args.length==0) {
 			//Si no recibe argumentos pregunta que quiere el usuario hacer
 			queHacer=preguntarQueHacer(input);
-		}else {
-			try {
-				//Recoge la accion del argumento
-				queHacer = Integer.parseInt(args[0]);
-				if(queHacer<1 || queHacer>3) {
-					//Si la opcion no es valida lanza excepciom
-					throw new Exception("Opcion no valida");
-				}
-			}catch(Exception e) {
-				//Si el argumento no es valido pregunta al usuario
-				queHacer=preguntarQueHacer(input);
-			}
 		}
+//		else {
+//			try {
+//				//Recoge la accion del argumento
+//				queHacer = Integer.parseInt(args[0]);
+//				if(queHacer<1 || queHacer>3) {
+//					//Si la opcion no es valida lanza excepciom
+//					throw new Exception("Opcion no valida");
+//				}
+//			}catch(Exception e) {
+//				//Si el argumento no es valido pregunta al usuario
+//				queHacer=preguntarQueHacer(input);
+//			}
+//		}
 		
 		String letras;
 		switch (queHacer) {

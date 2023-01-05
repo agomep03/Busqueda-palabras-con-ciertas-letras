@@ -11,7 +11,11 @@ public class Dictionary {
 		try {
 			Source source = new Source("Diccionario.txt");
 			while(source.hasNext()) {
-				palabras.add(source.getNext());
+				String pal = source.getNext();
+				StringBuffer palabra = new StringBuffer(pal);
+				palabra.replace(palabra.length() - 1, palabra.length(), "");
+				palabras.add(palabra.toString());
+			
 			}
 		} catch (Exception e) {
 			System.out.println("Error en el constructor de diccionario: "+e.getMessage());
