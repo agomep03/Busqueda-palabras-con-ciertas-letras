@@ -17,7 +17,7 @@ public class Code3 {
 		cod1 = new Code(dc);
 		cod2 = new Code2(dc);
 		this.dict3 = dc;
-	}
+	} 
 	
 	public String RandomWord() {
 		Random randomNumber = new Random();
