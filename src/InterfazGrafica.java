@@ -30,7 +30,7 @@ public class InterfazGrafica{
 	private JPanel modos;
 	
 	public InterfazGrafica() {
-		this.seleccionCodigo = 1;
+		this.seleccionCodigo = 0;
 		this.diccionario = new Dictionary();
 	}
 	
@@ -59,7 +59,6 @@ public class InterfazGrafica{
 		opciones.add(codes, BorderLayout.CENTER);
 		
 		principal.add(opciones);
-		code1.setEnabled(false);
 		code1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -116,6 +115,7 @@ public class InterfazGrafica{
 				case 3:
 					imprimirRes("Aqui llamaría a las pruebas...\n"+"Pero aun no las he puesto :b");
 				default:
+					imprimirRes("Da click a un botón para seleccionar su modo.");
 					break;
 				}
 			}
