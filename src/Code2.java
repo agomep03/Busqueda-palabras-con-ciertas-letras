@@ -23,9 +23,10 @@ public class Code2 {
 		StringBuffer words = new StringBuffer();
 		
 		StringBuffer newWord = new StringBuffer();
-		
+		StringBuffer lettersUsedNow = new StringBuffer();
 		for(int i = 0; i < letters.length; i++) {
-			if(used[i] == false) {	
+			if(used[i] == false && lettersUsedNow.indexOf(letters[i]) == -1) {	
+				lettersUsedNow.append(letters[i]);
 				newWord = new StringBuffer();
 				newWord.append(actualWord + letters[i]);
 				used[i] = true;
