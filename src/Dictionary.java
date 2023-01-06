@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Dictionary {
 	ArrayList<String> palabras;
 	
-	public Dictionary() {
+	public Dictionary(String dicFile) {
 		palabras = new ArrayList<String>();
 		
 		try {
-			Source source = new Source("Diccionario.txt");
+			Source source = new Source(dicFile);
 			while(source.hasNext()) {
 				String pal = source.getNext();
 				StringBuffer palabra = new StringBuffer(pal);

@@ -1,17 +1,23 @@
 package src;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 
 public class InterfazGrafica{
 	private int seleccionCodigo;
 	private int numPos;
-	private Dictionary diccionario;
+	private Dictionary diccionarioGrande;
+	private Dictionary diccionarioBasico;
+	private Dictionary dicActual;
 	
 	private JFrame ventana;
 	private JPanel principal;
@@ -33,22 +39,30 @@ public class InterfazGrafica{
 	private JLabel etiquetas[];
 	private int numEtiquetas;
 	
+	private JPanel diccionariosElegir;
+	private JButton dic1;
+	private JButton dic2;
+	private JPanel dicTodo;
+	
 	
 	String[] listaSoluciones;
 	
 	public InterfazGrafica() {
 		this.seleccionCodigo = 0;
 		this.numPos = 0;
-		this.diccionario = new Dictionary();
+		this.diccionarioGrande = new Dictionary("DiccionarioGrande.txt");
+		this.diccionarioBasico = new Dictionary("DiccionarioBasico.txt");
 		this.numEtiquetas = 10;
 	}
 	
 	public void crearVentana() {
 		ventana= new JFrame("Busqueda de palabras");
 		ventana.setLayout(new BorderLayout(10,10));
-		principal = new JPanel(new GridLayout(2, 1,10,10));
+		principal = new JPanel(new GridLayout(3, 1,10,10));
 		ventana.add(principal, BorderLayout.NORTH);
 		principal.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+		
+		
 		
 		opciones = new JPanel();
 		opciones.setLayout(new BorderLayout());
@@ -72,7 +86,7 @@ public class InterfazGrafica{
 		code1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				seleccionCodigo=2;
+				seleccionCodigo=1;
 				code1.setEnabled(false);
 				code2.setEnabled(true);
 				prueba.setEnabled(true);
@@ -81,7 +95,7 @@ public class InterfazGrafica{
 		code2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				seleccionCodigo=1;
+				seleccionCodigo=2;
 				code1.setEnabled(true);
 				code2.setEnabled(false);
 				prueba.setEnabled(true);
@@ -97,8 +111,41 @@ public class InterfazGrafica{
 			}
 		});
 		
+		
+		diccionariosElegir = new JPanel();
+		diccionariosElegir.setLayout(new BorderLayout());
+		diccionariosElegir.add(new JLabel("Selecciona un diccionario: "), BorderLayout.WEST);
+		principal.add(diccionariosElegir);
+		
+		
+		dic1 = new JButton("Diccionario completo");
+		dic1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dicActual=diccionarioGrande;
+				dic1.setEnabled(false);
+				dic2.setEnabled(true);
+			}
+		});
+		dic2 = new JButton("Diccionario común");
+		dic2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dicActual=diccionarioBasico;
+				dic1.setEnabled(true);
+				dic2.setEnabled(false);
+			}
+		});
+		dicTodo = new JPanel();
+		dicTodo.setLayout(new GridLayout(2,1));
+		dicTodo.add(dic1);
+		dicTodo.add(dic2);
+		diccionariosElegir.add(dicTodo, BorderLayout.CENTER);
+		
+		
 		panelEjecutar = new JPanel();
-		panelEjecutar.setLayout(new BorderLayout(10,10));
+		panelEjecutar.setLayout(new BorderLayout(50,50));
+		panelEjecutar.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
 		
 		letras = new JTextField();
 		panelEjecutar.add(letras, BorderLayout.CENTER);
@@ -109,27 +156,34 @@ public class InterfazGrafica{
 		ejecutar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				switch (seleccionCodigo) {
-					case 1:
-						Code codigo = new Code(diccionario);
-						String sol = codigo.DictionarySearch(letras.getText());
-						imprimirRes(sol);
-						break;
-					case 2:
-						String[] letrasDivididas = letras.getText().split("");
-						Code2 codigo2 = new Code2(diccionario);
-						String sol2 = codigo2.DictionarySearch(letrasDivididas);
-						imprimirRes(sol2);
-						break;
-					case 3:
-						imprimirRes("Aqui llamaría a las pruebas");
-						break;
-					default:
-						imprimirRes("Da click a un botón para seleccionar su modo.");
-						break;
+				if(dicActual==null) {
+					imprimirRes("Da click a un botón para seleccionar el diccionario\nque quiere usar");
+				}else {
+					switch (seleccionCodigo) {
+						case 1:
+							Code codigo = new Code(dicActual);
+							String sol = codigo.DictionarySearch(letras.getText());
+							System.out.println(sol);
+							imprimirRes(sol);
+							break;
+						case 2:
+							String[] letrasDivididas = letras.getText().split("");
+							Code2 codigo2 = new Code2(dicActual);
+							String sol2 = codigo2.DictionarySearch(letrasDivididas);
+							System.out.println(sol2);
+							imprimirRes(sol2);
+							break;
+						case 3:
+							imprimirRes("Aqui llamaría a las pruebas");
+							break;
+						default:
+							imprimirRes("Da click a un botón para seleccionar su modo.");
+							break;
+					}
 				}
 			}
 		});
+		
 		
 		soluciones = new JPanel();
 		soluciones.setLayout(new BorderLayout());
@@ -174,7 +228,7 @@ public class InterfazGrafica{
 		soluciones.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 		
 		
-		ventana.setSize(450, 450);
+		ventana.setSize(450, 600);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);
