@@ -163,16 +163,20 @@ public class InterfazGrafica{
 						case 1:
 							Code codigo = new Code(dicActual);
 							String sol = codigo.DictionarySearch(letras.getText());
+							System.out.println(sol);
 							imprimirRes(sol);
 							break;
 						case 2:
 							String[] letrasDivididas = letras.getText().split("");
 							Code2 codigo2 = new Code2(dicActual);
 							String sol2 = codigo2.DictionarySearch(letrasDivididas);
+							System.out.println(sol2);
 							imprimirRes(sol2);
 							break;
 						case 3:
-							imprimirRes("Aqui llamaría a las pruebas");
+							Code3 codigo3 = new Code3(dicActual);
+							String sol3 = codigo3.test();
+							System.out.println(sol3);
 							break;
 						default:
 							imprimirRes("Da click a un botón para seleccionar su modo.");
@@ -180,8 +184,7 @@ public class InterfazGrafica{
 					}
 				}
 			}
-		});
-		
+		});		
 		
 		soluciones = new JPanel();
 		soluciones.setLayout(new BorderLayout());
@@ -248,7 +251,4 @@ public class InterfazGrafica{
 			}
 		}
 	}
-	
-	
-	
 }

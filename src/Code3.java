@@ -19,7 +19,12 @@ public class Code3 {
 		this.dict3 = dc;
 	}
 	
+	public String test() {
+		String word = RandomWord();
+		return "TEST:" + devuelto(pruebaCode1(word),pruebaCode2(word));
+	}
 	
+	//Genera una palabra aleatoria
 	public String RandomWord() {
 		Random randomNumber = new Random();
 		randomNumber.setSeed(System.currentTimeMillis());
@@ -48,28 +53,32 @@ public class Code3 {
 		}
 	}
 	
+	//Prueba el codigo 1 (menos optimo) 
 	public long pruebaCode1(String palabra) {
 		Calendar rightNow = Calendar.getInstance();
 		long time = rightNow.getTimeInMillis();
+		
 		String sol = cod1.DictionarySearch(palabra);
+		
 		Calendar rightNow2 = Calendar.getInstance();
 		long time2 = rightNow2.getTimeInMillis();
 		long terminado = time2 - time;
+		
 		return terminado;
 	}
 	
-	public long[] pruebaCode2(String palabra) {
-		long[] otros = new long[2];
+	public long pruebaCode2(String palabra) {
 		Calendar rightNow3 = Calendar.getInstance();
 		long time3 = rightNow3.getTimeInMillis();
-		String[] letrasDivididas = palabra.split("");
+		
+		String[] letrasDivididas = palabra.split("");	
 		String sol2 = cod2.DictionarySearch(letrasDivididas);
+		
 		Calendar rightNow4 = Calendar.getInstance();
 		long time4 = rightNow4.getTimeInMillis();
 		long terminado2 = time4 - time3;
-		otros[0]=terminado2;
 		
-		return otros;
+		return terminado2;
 	}
 	
 	public String devuelto(long terminado, long terminado2){
