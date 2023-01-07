@@ -31,6 +31,7 @@ public class Code{
 		String lettersUsedNow = "";
 		for (int i = 0; i< letters.length(); i++) {
 			if (Used[i] == false && !lettersUsedNow.contains(letters.substring(i, i+1))) {
+				lettersUsedNow+=letters.charAt(i);
 				String NewWord = ActualWord + letters.charAt(i);
 				if (Number-1 == 0 ) {
 					if (dictMal.contains(NewWord)) {
