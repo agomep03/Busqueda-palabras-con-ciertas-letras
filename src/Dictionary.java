@@ -26,4 +26,23 @@ public class Dictionary {
 		return palabras.contains(palabra);
 	}
 	
+	public String getRandowWord(int number) {
+		int num = decreaseNumber(number);
+		System.out.println(palabras.get(num));
+		return palabras.get(num);
+	}
+	
+	public int decreaseNumber(int number) {
+		while(number > palabras.size()) {
+			//System.out.println(number);
+			number = number / 2;
+		}
+		while(palabras.get(number).length() > 7) {
+			//System.out.println(palabras.get(number).length() + "-----");
+			number = number / 2;
+		}
+		//System.out.println(palabras.get(number).length() + "--A--");
+		return number;
+	}
+	
 }

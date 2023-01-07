@@ -20,7 +20,10 @@ public class Code3 {
 	}
 	
 	public String test() {
-		String word = RandomWord();
+		Random randomNumber = new Random();
+		randomNumber.setSeed(System.currentTimeMillis());
+		int r = randomNumber.nextInt(108790);
+		String word = dict3.getRandowWord(r);
 		return "TEST:" + devuelto(pruebaCode1(word),pruebaCode2(word));
 	}
 	
@@ -57,11 +60,13 @@ public class Code3 {
 	public long pruebaCode1(String palabra) {
 		Calendar rightNow = Calendar.getInstance();
 		long time = rightNow.getTimeInMillis();
+		System.out.println("Code1 empieza en:" + time);
 		
 		String sol = cod1.DictionarySearch(palabra);
 		
 		Calendar rightNow2 = Calendar.getInstance();
 		long time2 = rightNow2.getTimeInMillis();
+		System.out.println("Code1 termina en:" + time2);
 		long terminado = time2 - time;
 		
 		return terminado;
@@ -70,12 +75,14 @@ public class Code3 {
 	public long pruebaCode2(String palabra) {
 		Calendar rightNow3 = Calendar.getInstance();
 		long time3 = rightNow3.getTimeInMillis();
+		System.out.println("Code2 empieza en:" + time3);
 		
 		String[] letrasDivididas = palabra.split("");	
 		String sol2 = cod2.DictionarySearch(letrasDivididas);
 		
 		Calendar rightNow4 = Calendar.getInstance();
 		long time4 = rightNow4.getTimeInMillis();
+		System.out.println("Code2 termina en:" + time4);
 		long terminado2 = time4 - time3;
 		
 		return terminado2;
