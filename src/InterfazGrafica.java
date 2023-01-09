@@ -191,9 +191,10 @@ public class InterfazGrafica{
 		ventana.add(soluciones, BorderLayout.CENTER);
 		
 		flechas = new JPanel();
-		flechas.setLayout(new GridLayout(2,1));
+		flechas.setLayout(new GridLayout(7,1,5,5));
 		subir = new JButton("↑");
-		subir.setFont(new Font("TimesRoman", Font.PLAIN, 40));
+		int sizeFont = 30;
+		subir.setFont(new Font("TimesRoman", Font.PLAIN, sizeFont));
 		subir.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -205,7 +206,7 @@ public class InterfazGrafica{
 		});
 		flechas.add(subir);
 		bajar = new JButton("↓");
-		bajar.setFont(new Font("TimesRoman", Font.PLAIN, 40));
+		bajar.setFont(new Font("TimesRoman", Font.PLAIN, sizeFont));
 		bajar.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
