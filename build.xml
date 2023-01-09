@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<project name="BusquedaPalabras" basedir="." default="todo">
+	<property name="src" value="src/"/>
+	<target name="compilar">
+		<javac includeantruntime="false" srcdir="${src}" destdir="${src}"/>
+		<echo message="Compilado"/>
+    	</target>
+    	<target name="probar" depends="compilar"/>
+		<java classname="Main">
+         		<classpath>
+				<pathelement path="${src}"/>
+         		</classpath>
+     		</java>
+		<echo message="Abriendo"/>
+    	</target>
+	<target name="todo" depends="probar"/>
+</project>
