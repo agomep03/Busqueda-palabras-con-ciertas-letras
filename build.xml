@@ -1,18 +1,29 @@
 <?xml version="1.0"?>
+<project name="MyProject" basedir=".">
+    <property name="src" value="src"/>
+    <property name="classes" value="classes"/>
+    <property name="main-class" value="Main"/>
 
-<project name="BusquedaPalabras" basedir="." default="todo">
-	<property name="src" value="src/"/>
-	<target name="compilar">
-		<javac includeantruntime="false" srcdir="${src}" destdir="${src}"/>
-		<echo message="Compilado"/>
-    	</target>
-    	<target name="probar" depends="compilar"/>
-		<java classname="Main">
-         		<classpath>
-				<pathelement path="${src}"/>
-         		</classpath>
-     		</java>
-		<echo message="Abriendo"/>
-    	</target>
-	<target name="todo" depends="probar"/>
+    <target name="compile">
+        <mkdir dir="${classes}"/>
+        <javac srcdir="${src}" destdir="${classes}" includeantruntime="false">
+            <classpath>
+                <pathelement path="${java.class.path}"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="run" depends="compile">
+        <java classname="${main-class}" dir="${classes}/src">
+            <classpath>
+                <pathelement path="${classes}"/>
+                <pathelement path="${java.class.path}"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="clean">
+        <delete dir="${classes}"/>
+    </target>
+
 </project>
